@@ -2,7 +2,7 @@ import os
 import sys
 import click
 
-from flask import Flask
+from flask import Flask,render_template
 from flask_sqlalchemy import SQLAlchemy
 
 WIN = sys.platform.startswith('win')
@@ -59,3 +59,9 @@ def forge():
         db.session.add(movie)
     db.session.commit()
     click.echo('Done!')
+
+@app.route('/')
+def index():
+    user = User.query.first()
+    movies = Movie.query.all()
+    return render_template('index.html', user=user, movies=movies)
