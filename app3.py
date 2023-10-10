@@ -14,7 +14,7 @@ else:
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = prefix + os.path.join(app.root_path, 'data.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False #关闭对模型修改的监控
-app.config['SESSION_KEY'] = 'dev'
+app.config['SECRET_KEY'] = 'dev'
 db = SQLAlchemy(app)
 
 class User(db.Model):
